@@ -1,0 +1,64 @@
+﻿@model SmartSEO.Models.Site
+@{
+    ViewBag.Title = "添加网站";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span></li>
+        <li><a href="@Url.Content("~/Sites/")">资源网站</a><span class="divider">/</span></li>
+        <li class="active">添加网站</li>
+    </ul>
+    <fieldset>
+        <legend>添加网站</legend>
+        <form class="form-vertical" action="@Url.Content("~/Sites/Add")" method="post">
+        <div class="control-group">
+            <label class="control-label">网站地址</label>
+            <div class="controls">
+                <input type="text" name="Domain" class="span12" value="@Model.Domain">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">网站标题</label>
+            <div class="controls">
+                <input type="text" name="Title" class="span12" value="@Model.Title">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                谷歌权重：<input type="text" name="GooglePR" value="@Model.GooglePR">
+                百度权重：<input type="text" name="BaiDuPR" value="@Model.BaiDuPR">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                谷歌收录：<input type="text" name="GoogleRecord" value="@Model.GoogleRecord">
+                百度收录：<input type="text" name="BaiDuRecord" value="@Model.BaiDuRecord">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">备注信息</label>
+            <div class="controls">
+                <input type="text" name="Remark" class="span6" value="@Model.Remark">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                提交
+            </button>
+            <button type="button" class="btn">
+                取消
+            </button>
+        </div>
+        </form>
+    </fieldset>
+</div>

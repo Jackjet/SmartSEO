@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        @ViewBag.Title - 管理中心 - 
+        @System.Configuration.ConfigurationManager.AppSettings["ProductName"]
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <link href="@Url.Content("~/Scripts/bootstrap/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
+    <script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.cookie.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.form.js")" type="text/javascript"></script>
+
+
+    <!--更新类库版本至4.1同时更新插件模块-->
+    <script src="@Url.Content("~/Scripts/ckeditor4.1/ckeditor.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ckeditor4.1/lang/zh-cn.js")" type="text/javascript"></script>
+
+    <!--图片查看对话框插件-->
+    <link href="@Url.Content("~/Scripts/lhgdialog/skins/mac.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+
+    <!--<script src="@Url.Content("~/Scripts/ZeroClipboard-1.1.7/ZeroClipboard.min.js")" type="text/javascript"></script>-->
+	<script src="@Url.Content("~/Scripts/copy.js")" type="text/javascript"></script>
+
+    <style type="text/css">
+        body
+        {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .sidebar-nav
+        {
+            padding: 9px 0;
+        }
+    </style>
+    <script>
+        $(function () {
+            //鼠标经过导航条背景切换特效
+            $('.nav>li').mouseover(function () {
+                $(this).addClass('active');
+            });
+            //鼠标离开导航条背景切换特效
+            $('.nav>li').mouseout(function () {
+                $(this).removeClass('active');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </a><a class="brand" href="@Url.Content("~/")">网络营销</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="@Url.Content("~/Sites/")">资源网站</a> </li>
+                        <li><a href="@Url.Content("~/Account/")">账号资源</a> </li>
+                        <li><a href="@Url.Content("~/Article/")">优化文章</a> </li>
+                        <li><a href="@Url.Content("~/Signature/")">签名档案</a> </li>
+                    </ul>
+                    <ul class="nav inline pull-right">
+                        <li><a href="#"><i class="icon-user"></i>超级管理员</a> </li>
+                        <li><a href="@Url.Content("~/")"><i class="icon-home"></i>主页</a> </li>
+                        <li><a href="#"><i class="icon-off"></i>退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            @RenderBody()
+        </div>
+        <hr>
+        <footer>
+            <p>
+                &copy; @System.Configuration.ConfigurationManager.AppSettings["CompanyName"]
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

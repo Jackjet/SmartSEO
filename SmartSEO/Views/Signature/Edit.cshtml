@@ -1,0 +1,46 @@
+﻿@model SmartSEO.Models.Signature
+@{
+    ViewBag.Title = "编辑签名";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span></li>
+        <li><a href="@Url.Content("~/Signature/")">签名</a><span class="divider">/</span></li>
+        <li class="active">编辑签名</li>
+    </ul>
+    <fieldset>
+        <legend>编辑签名</legend>
+        <form class="form-vertical" action="@Url.Content("~/Signature/Edit")" method="post">
+        <div class="control-group">
+            <label class="control-label">
+                签名标题</label>
+            <div class="controls">
+                <input type="text" name="Title" class="span12" value="@Model.Title">
+                <input type="hidden" name="SignatureID" value="@Model.SignatureID">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                签名内容</label>
+            <div class="controls">
+                <textarea name="Content" class="ckeditor span12" id="Content">
+                    @Model.Content
+                </textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                修改
+            </button>
+            <button type="button" class="btn">
+                取消
+            </button>
+        </div>
+        </form>
+    </fieldset>
+</div>

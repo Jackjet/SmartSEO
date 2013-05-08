@@ -1,0 +1,78 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<SmartSEO.Models.Account>
+@{
+    ViewBag.Title = "账号资源";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span> </li>
+        <li class="active">账号资源</li>
+    </ul>
+    <fieldset>
+        <legend>账号资源</legend>
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th style="width:45px; text-align: center;">
+                        编号
+                    </th>
+                    <th style="text-align: center;">
+                        访问地址
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        登录账号
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        账号密码
+                    </th>
+                    <th style="width: 120px; text-align: center;">
+                        添加时间
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        备注信息
+                    </th>
+                    <th style="width: 140px; text-align: center;">
+                        常用操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for(int i=0;i<Model.Count(); i++)
+                    {
+                    <tr>
+                        <td style="text-align: center;">@(i+1)</td>
+                        <td>
+                            <a target="_blank" href="@Model[i].Url">@Model[i].Url</a>
+                        </td>
+                        <td style="text-align: center;">@Model[i].UserName</td>
+                        <td style="text-align: center;">@Model[i].Password</td>
+                        <td style="text-align: center;">@Model[i].CreateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td style="text-align: center;">@Model[i].Remark</td>
+                        <td style="text-align: center;">
+                            <a href="@Url.Content("~/Account/Edit?id=")@Model[i].AccountID" class="btn">修改</a>
+                            <a href="@Url.Content("~/Account/Del?id=")@Model[i].AccountID" class="btn btn-danger">删除</a>
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <!--分页开始 page页码-->
+    @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "page" })
+    @if (Model != null && Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">
+                提示</h4>
+            暂无查询到数据。
+        </div>
+    }
+</div>

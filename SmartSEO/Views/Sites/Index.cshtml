@@ -1,0 +1,86 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<SmartSEO.Models.Site>
+@{
+    ViewBag.Title = "资源网站";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span> </li>
+        <li class="active">资源网站</li>
+    </ul>
+    <fieldset>
+        <legend>资源网站</legend>
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        网站标题
+                    </th>                    
+                    <th style="width: 75px; text-align: center;">
+                        谷歌PR
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        百度PR
+                    </th>
+                    <th style="width: 100px; text-align: center;">
+                        谷歌收录
+                    </th>
+                    <th style="width: 100px; text-align: center;">
+                        百度收录
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        优化权重
+                    </th>
+                    <th style="width: 120px; text-align: center;">
+                        添加时间
+                    </th>
+                    <th style="width: 120px; text-align: center;">
+                        备注信息
+                    </th>
+                    <th style="width: 120px; text-align: center;">
+                        常用操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                    <tr>
+                        <td>
+                            <a target="_blank" href="@Model[i].Domain" title="@Model[i].Domain">@Model[i].Title</a>
+                        </td>
+                        <td style="text-align: center;">@Model[i].GooglePR</td>
+                        <td style="text-align: center;">@Model[i].BaiDuPR</td>
+                        <td style="text-align: center;">@Model[i].GoogleRecord</td>
+                        <td style="text-align: center;">@Model[i].BaiDuRecord</td>
+                        <td style="text-align: center;">@Model[i].Rank</td>
+                        <td style="text-align: center;">@Model[i].CreateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td style="text-align: center;">@Model[i].Remark</td>
+                        <td style="text-align: center;">
+                            <a href="@Url.Content("~/Sites/Edit?id=")@Model[i].SiteID" class="btn">修改</a>
+                            <a href="@Url.Content("~/Sites/Del?id=")@Model[i].SiteID" class="btn btn-danger">删除</a>
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <!--分页开始 page页码-->
+    @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "page" })
+    @if (Model != null && Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">
+                提示</h4>
+            暂无查询到数据。
+        </div>
+    }
+</div>

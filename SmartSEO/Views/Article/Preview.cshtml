@@ -1,0 +1,85 @@
+﻿@using SmartSEO.Models;
+@model SmartSEO.Models.Article
+@{
+    ViewBag.Title = "文章预览：" + Model.Title;
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span></li>
+        <li><a href="@Url.Content("~/Article/")">优化文章</a><span class="divider">/</span></li>
+        <li class="active">文章预览</li>
+    </ul>
+    <fieldset>
+        <legend>文章预览</legend>
+        <a href="@Url.Content("~/Article/Preview?type=text&id=")@Model.ArticleID" class="btn btn-primary" title="文本预览">文本预览</a>
+        <a href="@Url.Content("~/Article/Preview?type=html&id=")@Model.ArticleID" class="btn btn-info" title="HTML预览">HTML预览</a>
+        <a href="@Url.Content("~/Article/Preview?type=ubb&id=")@Model.ArticleID" class="btn btn-success" title="UBB代码预览">UBB预览</a>
+
+        <a class="btn" href="#" id="btn-CopyTitle">复制标题</a>
+        <a class="btn" href="#" id="btn-CopyContent">复制内容</a>
+        
+        <br />
+        <br />
+        <br />
+        <b>文章标题：</b>
+        <p id="CopyTitle">@Model.Title</p>
+        <br />
+        <b>文章内容：</b>
+        <div id="CopyContent" type="@ViewBag.ContentType">
+            @if (ViewBag.ContentType == "html")
+            {
+                @Html.Raw(Model.Content)
+                @Html.Raw(ViewBag.Signature.Content)
+            }
+            else if (ViewBag.ContentType == "ubb")
+            {
+                @Model.Content
+                @ViewBag.Signature.Content
+            }
+            else
+            {
+                @Model.Content
+                @ViewBag.Signature.Content
+            }            
+        </div>
+        <br />
+        <b>备注信息：</b>
+        <p>@Model.Remark</p>
+    </fieldset>
+</div>
+
+<script>
+    $(function () {
+        $('#btn-CopyTitle').click(function () {
+            //复制标题
+            var objFrame = document.getElementById('CopyTitle');
+            objFrame.contentEditable = true;   //设置编辑状态可用
+            objFrame.focus();                  //设置焦点
+            document.execCommand("SelectAll"); //选定
+            objFrame.contentEditable = false;  //设置编辑状态为禁止
+            document.execCommand("Copy");      //复制
+            document.execCommand("Unselect");  //取消选择
+        });
+
+        $('#btn-CopyContent').click(function () {
+            var type = $('#CopyContent').attr('type');
+
+            if (type == 'html') {                
+                var objFrame = document.getElementById("CopyContent");
+                objFrame.contentEditable = true;   //设置编辑状态可用
+                objFrame.focus();                  //设置焦点
+                document.execCommand("SelectAll"); //选定
+                objFrame.contentEditable = false;  //设置编辑状态为禁止
+                document.execCommand("Copy");      //复制
+                document.execCommand("Unselect");  //取消选择
+            } else {
+                window.clipboardData.setData('Text',$('#CopyContent').text());
+            }
+        });
+    });
+</script>
