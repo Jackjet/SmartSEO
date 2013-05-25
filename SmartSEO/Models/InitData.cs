@@ -17,7 +17,7 @@ namespace SmartSEO.Models
             //{
             //    new Account(){
             //         CreateTime= DateTime.Now,
-            //         UserName = "jcjmyz",
+            //         ApplyPeople = "jcjmyz",
             //         Password="wangdan1494",
             //         Url="http://www.qq.com",
             //         Remark="成功"

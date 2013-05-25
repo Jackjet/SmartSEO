@@ -1,0 +1,56 @@
+﻿@model SmartSEO.Models.CustomerALert
+@{
+    ViewBag.Title = "添加提醒";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("Custom/_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span> </li>
+        <li><a href="@Url.Content("~/Customer/")">客户提醒</a><span class="divider">/</span>
+        </li>
+        <li class="active">添加提醒</li>
+    </ul>
+    <fieldset>
+        <legend>添加提醒</legend>
+        <form class="form-horizontal" action="@Url.Content("~/CustomerALert/Add")" method="post">
+
+        <div class="control-group">
+            <label class="control-label">
+                客户</label>
+            <div class="controls">
+                @(Model.Customer == null ? "" : Model.Customer.UserName)
+                <input type="hidden" value="@(Model.Customer == null ? 0 : Model.Customer.ID)" name="CustomerID" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                提醒时间</label>
+            <div class="controls">
+                <input type="text" name="AlertTime" class="span6" value="@Model.AlertTime">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                提醒内容</label>
+            <div class="controls">
+                <input type="text" name="AlertMsg" class="span6" value="@Model.AlertMsg">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                提交
+            </button>
+            <button type="button" class="btn">
+                取消
+            </button>
+        </div>
+        </form>
+    </fieldset>
+</div>

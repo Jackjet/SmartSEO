@@ -1,0 +1,86 @@
+﻿@model SmartSEO.Models.Customer
+@{
+    ViewBag.Title = "查看客户";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("Custom/_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span> </li>
+        <li><a href="@Url.Content("~/Customer/")">客户管理</a><span class="divider">/</span>
+        </li>
+        <li class="active">查看客户</li>
+    </ul>
+    <fieldset>
+        <legend>查看客户</legend>
+        <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label">
+                姓名</label>
+            <div class="controls">
+                @Model.UserName
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                电话</label>
+            <div class="controls">
+                @foreach (var p in Model.Phone.OrderByDescending(m => m.CreateTime))
+                {
+                    <p>
+                        @p.Number,
+                        @p.PhoneType,
+                        @p.CreateTime,
+                        @p.Remark
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                性别</label>
+            <div class="controls">
+                @(Model.Sex ? "男" : "女")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                年龄</label>
+            <div class="controls">
+                @Model.Age
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                职位</label>
+            <div class="controls">
+                @Model.Role
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                住址</label>
+            <div class="controls">
+                @Model.Address
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                籍贯</label>
+            <div class="controls">
+                @Model.Origin
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                渠道</label>
+            <div class="controls">
+                @Model.Channel
+            </div>
+        </div>
+        </form>
+    </fieldset>
+</div>

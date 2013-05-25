@@ -27,5 +27,19 @@ namespace SmartSEO.Models
         /// 签名
         /// </summary>
         public DbSet<Signature> Signatures { get; set; }
+
+        public DbSet<AccountsTable> AccountsTables { get; set; }
+
+        public DbSet<BaseUser> BaseUsers { get; set; }
+
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<CustomerALert> CustomerALerts { get; set; }
+
+        public DbSet<CustomerHistory> CustomerHistorys { get; set; }
+
+        public DbSet<Phone> Phones { get; set; }
+
+        public DbSet<WorlkLog> WorlkLogs { get; set; }
     }
 }

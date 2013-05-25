@@ -1,0 +1,86 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<SmartSEO.Models.AccountsTable>
+@{
+    ViewBag.Title = "账务管理";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("Custom/_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span> </li>
+        <li><a href="@Url.Content("~/AccountsTable/")">账务管理</a><span class="divider">/</span>
+        </li>
+        <li class="active">记账浏览</li>
+    </ul>
+    <fieldset>
+        <legend>记账浏览</legend>
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        客户姓名
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        常用电话
+                    </th>
+                    <th style="text-align: center;">
+                        性别
+                    </th>
+                    <th style="text-align: center;">
+                        年龄
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        职位
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        添加时间
+                    </th>
+                    <th style="width: 75px; text-align: center;">
+                        常用操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                    <tr>
+                        <td style="text-align: left;">
+                            <a target="_blank" title="点击查看详情" 
+                                href="@Url.Content("~/")@Model[i].">张三 </a>
+                        </td>
+                        <td style="text-align: center;">
+                        </td>
+                        <td style="text-align: center;">
+                        </td>
+                        <td style="text-align: center;">
+                        </td>
+                        <td style="text-align: center;">
+                        </td>
+                        <td style="text-align: center;">
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="@Url.Content("~/")" class="btn">修改</a> <a href="@Url.Content("~/")" class="btn btn-danger">
+                                删除</a>
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <!--分页开始 page页码-->
+    @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "page" })
+    @if (Model != null && Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">
+                提示</h4>
+            暂无查询到数据。
+        </div>
+    }
+</div>

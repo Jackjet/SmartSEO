@@ -1,0 +1,87 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<SmartSEO.Models.CustomerALert>
+@{
+    ViewBag.Title = "客户提醒";
+}
+<div class="span2">
+    <div class="well sidebar-nav">
+        @Html.Partial("Custom/_QuickMenu")
+    </div>
+</div>
+<div class="span10">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Content("~/")">网络营销</a><span class="divider">/</span> </li>
+        <li><a href="@Url.Content("~/CustomerALert/")">客户提醒</a><span class="divider">/</span>
+        </li>
+        <li class="active">提醒查看</li>
+    </ul>
+    <fieldset>
+        <legend>提醒查看</legend>
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        客户姓名
+                    </th>
+                    <th style="text-align: center;">
+                        提醒时间
+                    </th>
+                    <th style="text-align: center;">
+                        消息内容
+                    </th>
+                    <th style="text-align: center;">
+                        阅读状态
+                    </th>
+                    <th style="text-align: center;">
+                        常用操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                    <tr>
+                        <td style="text-align: left;">
+                            <a target="_blank" title="点击查看详情" 
+                                href="@Url.Content("~/CustomerALert/View/?id=")@Model[i].ID">
+                                @(Model[i].Customer == null ? "" : Model[i].Customer.UserName)
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            @if (Model[i].AlertTime.CompareTo(DateTime.Parse(DateTime.Now.AddDays(1).AddHours(-1).ToString("yyyy-MM-dd"))) < 0)
+                            {
+                                <text>[今天]</text>
+                            }
+                            @Model[i].AlertTime
+                        </td>
+                        <td style="text-align: center;">
+                            @Model[i].AlertMsg
+                        </td>
+                        <td style="text-align: center;">
+                            @(Model[i].IsRead ? "已读" : "未读")
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="@Url.Content("~/CustomerALert/Read?id=")@Model[i].ID" class="btn">已读</a>
+                            <a href="@Url.Content("~/CustomerALert/Edit?id=")@Model[i].ID" class="btn">修改</a>
+                            <a href="@Url.Content("~/CustomerALert/Del?id=")@Model[i].ID" class="btn btn-danger">
+                                删除</a>
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </fieldset>
+    <!--分页开始 page页码-->
+    @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "page" })
+    @if (Model != null && Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">
+                提示</h4>
+            暂无查询到数据。
+        </div>
+    }
+</div>
