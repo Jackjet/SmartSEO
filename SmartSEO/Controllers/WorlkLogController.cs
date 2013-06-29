@@ -26,7 +26,22 @@ namespace SmartSEO.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            var model = new Models.WorlkLog();
+            model.UseTime = 8;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Add(Models.WorlkLog model)
+        {
+            model.CreateTime = DateTime.Now;
+
+            db.WorlkLogs.Add(model);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit()
@@ -34,9 +49,17 @@ namespace SmartSEO.Controllers
             return View();
         }
 
-        public ActionResult Del()
+        public ActionResult Del(int id)
         {
-            return View();
+            var model = db.WorlkLogs.Where(m => m.ID == id).FirstOrDefault();
+
+            if (model != null)
+            {
+                db.Entry(model).State = System.Data.EntityState.Deleted;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

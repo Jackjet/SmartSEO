@@ -26,6 +26,15 @@ namespace SmartSEO.Controllers
 
         public ActionResult Add()
         {
+            var model = new Models.CustomerHistory();
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Add(Models.CustomerHistory model)
+        {
             return View();
         }
 

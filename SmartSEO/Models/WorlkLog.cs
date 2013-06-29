@@ -18,7 +18,9 @@ namespace SmartSEO.Models
         /// <summary>
         /// 用户账号
         /// </summary>
-        public BaseUser UserName { get; set; }
+        //public BaseUser UserName { get; set; }
+        [StringLength(20)]
+        public string UserName { get; set; }
 
         /// <summary>
         /// 使用时间/小时
@@ -28,7 +30,7 @@ namespace SmartSEO.Models
         /// <summary>
         /// 工作内容
         /// </summary>
-        [StringLength(200)]
+        [StringLength(1024)]
         public String WorlkContent { get; set; }
 
         /// <summary>
