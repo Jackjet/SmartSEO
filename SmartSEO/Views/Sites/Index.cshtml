@@ -19,8 +19,11 @@
             <thead>
                 <tr>
                     <th style="text-align: center;">
+                        序号
+                    </th>
+                    <th style="text-align: center;">
                         网站标题
-                    </th>                    
+                    </th>
                     <th style="width: 75px; text-align: center;">
                         谷歌PR
                     </th>
@@ -53,19 +56,28 @@
                     for (int i = 0; i < Model.Count(); i++)
                     {
                     <tr>
+                        <td style="text-align: center;">@(i + 1)
+                        </td>
                         <td>
                             <a target="_blank" href="@Model[i].Domain" title="@Model[i].Domain">@Model[i].Title</a>
                         </td>
-                        <td style="text-align: center;">@Model[i].GooglePR</td>
-                        <td style="text-align: center;">@Model[i].BaiDuPR</td>
-                        <td style="text-align: center;">@Model[i].GoogleRecord</td>
-                        <td style="text-align: center;">@Model[i].BaiDuRecord</td>
-                        <td style="text-align: center;">@Model[i].Rank</td>
-                        <td style="text-align: center;">@Model[i].CreateTime.ToString("yyyy-MM-dd HH:mm")</td>
-                        <td style="text-align: center;">@Model[i].Remark</td>
+                        <td style="text-align: center;">@Model[i].GooglePR
+                        </td>
+                        <td style="text-align: center;">@Model[i].BaiDuPR
+                        </td>
+                        <td style="text-align: center;">@Model[i].GoogleRecord
+                        </td>
+                        <td style="text-align: center;">@Model[i].BaiDuRecord
+                        </td>
+                        <td style="text-align: center;">@Model[i].Rank
+                        </td>
+                        <td style="text-align: center;">@Model[i].CreateTime.ToString("yyyy-MM-dd HH:mm")
+                        </td>
+                        <td style="text-align: center;">@Model[i].Remark
+                        </td>
                         <td style="text-align: center;">
-                            <a href="@Url.Content("~/Sites/Edit?id=")@Model[i].SiteID" class="btn">修改</a>
-                            <a href="@Url.Content("~/Sites/Del?id=")@Model[i].SiteID" class="btn btn-danger">删除</a>
+                            <a href="@Url.Content("~/Sites/Edit?id=")@Model[i].SiteID" class="btn">修改</a> <a href="@Url.Content("~/Sites/Del?id=")@Model[i].SiteID" class="btn btn-danger">
+                                删除</a>
                         </td>
                     </tr>
                     }

@@ -16,71 +16,59 @@
     </ul>
     <fieldset>
         <legend>查看客户</legend>
-        <form class="form-horizontal">
         <div class="control-group">
-            <label class="control-label">
-                姓名</label>
             <div class="controls">
-                @Model.UserName
+                姓名：<input type="text" name="UserName" class="span4" value="@Model.UserName">
+                性别：<select name="Sex" class="span4">
+                    <option selected="selected" value="0">男</option>
+                    <option value="-1">女</option>
+                </select>
+                <input type="hidden" name="ID" value="@Model.ID" />
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                电话</label>
             <div class="controls">
-                @foreach (var p in Model.Phone.OrderByDescending(m => m.CreateTime))
-                {
-                    <p>
-                        @p.Number,
-                        @p.PhoneType,
-                        @p.CreateTime,
-                        @p.Remark
-                    </p>
-                }
+                年龄：<input type="text" name="Age" class="span4" value="@Model.Age">
+                职位：<input type="text" name="Role" class="span4" value="@Model.Role">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                性别</label>
             <div class="controls">
-                @(Model.Sex ? "男" : "女")
+                籍贯：<input type="text" name="Origin" class="span4" value="@Model.Origin">
+                邮箱：<input type="text" name="Email" class="span4" value="@Model.Email">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                年龄</label>
             <div class="controls">
-                @Model.Age
+                网址：<input type="text" name="Url" class="span4" value="@Model.Url">
+                邮编：<input type="text" name="ZipCode" class="span4" value="@Model.ZipCode">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                职位</label>
             <div class="controls">
-                @Model.Role
+                电话：<input type="text" name="Phone" class="span4" value="@Model.Phone">
+                住址：<input type="text" name="Address" class="span4" value="@Model.Address">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                住址</label>
             <div class="controls">
-                @Model.Address
+                业务：<input type="text" name="BusinessArea" class="span4" value="@Model.BusinessArea">
+                渠道：<input type="text" name="Channel" class="span4" value="@Model.Channel">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                籍贯</label>
             <div class="controls">
-                @Model.Origin
+                公司：<input type="text" name="CompanyName" class="span4" value="@Model.CompanyName">
+                位置：<input type="text" name="CompanyAddress" class="span4" value="@Model.CompanyAddress">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">
-                渠道</label>
             <div class="controls">
-                @Model.Channel
+                备注：
+                <textarea name="Remark" class="span4" rows="2">
+                    @Model.Remark
+                </textarea>
             </div>
         </div>
-        </form>
     </fieldset>
 </div>

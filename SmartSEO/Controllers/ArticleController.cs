@@ -76,10 +76,20 @@ namespace SmartSEO.Controllers
             var model = db.Articles.Where(m => m.ArticleID == id).FirstOrDefault();
 
             var signatures = db.Signatures.ToList();
-            var random = new Random().Next(0, signatures.Count);
+            if (signatures != null && signatures.Count > 0)
+            {
+                var random = new Random().Next(0, signatures.Count);
+                ViewBag.Signature = signatures[random];
+            }
+            else
+            {
+                ViewBag.Signature = new Models.Signature()
+                {
+                    Content = ""
+                };
+            }
 
             ViewBag.ContentType = type;
-            ViewBag.Signature = signatures[random];
 
             return View(model);
         }

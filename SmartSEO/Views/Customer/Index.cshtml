@@ -21,6 +21,9 @@
             <thead>
                 <tr>
                     <th style="text-align: center;">
+                        序号
+                    </th>
+                    <th style="text-align: center;">
                         客户姓名
                     </th>
                     <th style="text-align: center;">
@@ -49,16 +52,20 @@
                     for (int i = 0; i < Model.Count(); i++)
                     {
                     <tr>
+                        <td style="text-align: center;">
+                            @(i + 1)
+                        </td>
                         <td style="text-align: left;">
                             <a title="点击查看详情" 
                                 href="@Url.Content("~/Customer/View?id=")@Model[i].ID">@Model[i].UserName
                             </a>
                         </td>
                         <td style="text-align: center;">
-                            @if (Model[i].Phone.OrderByDescending(m => m.CreateTime).FirstOrDefault() != null)
+                            @*@if (Model[i].Phone.OrderByDescending(m => m.CreateTime).FirstOrDefault() != null)
                             {
                                 @Model[i].Phone.OrderByDescending(m => m.CreateTime).FirstOrDefault().Number
-                            }
+                            }*@
+                            @Model[i].Phone
                         </td>
                         <td style="text-align: center;">
                             @(Model[i].Sex ? "男" : "女")
@@ -74,9 +81,9 @@
                         </td>
                         <td style="text-align: center;">
                             <a href="@Url.Content("~/CustomerALert/Add?CustomerID=")@Model[i].ID" class="btn">增加提醒</a>
-                            <a href="@Url.Content("~/Customer/AddPhone?id=")@Model[i].ID" class="btn">增加电话</a>
-                            <a href="@Url.Content("~/Customer/Edit?id=")@Model[i].ID" class="btn">修改</a> 
-                            <a href="@Url.Content("~/Customer/Del?id=")@Model[i].ID" class="btn btn-danger">删除</a>
+                            @*<a href="@Url.Content("~/Customer/AddPhone?id=")@Model[i].ID" class="btn">增加电话</a>*@
+                            <a href="@Url.Content("~/Customer/Edit?id=")@Model[i].ID" class="btn">修改</a> <a href="@Url.Content("~/Customer/Del?id=")@Model[i].ID" class="btn btn-danger">
+                                删除</a>
                         </td>
                     </tr>
                     }

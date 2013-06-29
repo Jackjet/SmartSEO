@@ -34,9 +34,19 @@ namespace SmartSEO.Controllers
             model.CreateTime = DateTime.Now;
             model.Rank = 0;
 
-            db.Sites.Add(model);
+            //判断Url是否已经存在
+            var m = db.Sites.Where(p => p.Domain == model.Domain).FirstOrDefault();
+            if (m == null)
+            {
+                //自动补全http://协议标识
+                if (model.Domain.Length >= 7 && model.Domain.ToLower().Substring(0, 7) != "http://")
+                {
+                    model.Domain = "http://" + model.Domain;
+                }
 
-            db.SaveChanges();
+                db.Sites.Add(model);
+                db.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }

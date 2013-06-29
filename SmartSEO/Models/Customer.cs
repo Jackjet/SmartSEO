@@ -49,7 +49,9 @@ namespace SmartSEO.Models
         /// <summary>
         /// 电话号码
         /// </summary>
-        public List<Phone> Phone { get; set; }
+        //public List<Phone> Phone { get; set; }
+        [StringLength(500)]
+        public string Phone { get; set; }
 
         /// <summary>
         /// 客户认识渠道
@@ -67,5 +69,53 @@ namespace SmartSEO.Models
         /// </summary>
         [StringLength(200)]
         public string Origin { get; set; }
+
+        /// <summary>
+        /// 电子邮件
+        /// </summary>
+        [StringLength(500)]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// 联系QQ
+        /// </summary>
+        [StringLength(20)]
+        public string QQ { get; set; }
+
+        /// <summary>
+        /// 公司名称
+        /// </summary>
+        [StringLength(100)]
+        public string CompanyName { get; set; }
+
+        /// <summary>
+        /// 公司地址
+        /// </summary>
+        [StringLength(512)]
+        public string CompanyAddress { get; set; }
+
+        /// <summary>
+        /// 业务范围
+        /// </summary>
+        [StringLength(1024)]
+        public string BusinessArea { get; set; }
+
+        /// <summary>
+        /// 备注信息
+        /// </summary>
+        [StringLength(1024)]
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 网站
+        /// </summary>
+        [StringLength(1024)]
+        public string Url { get; set; }
+
+        /// <summary>
+        /// 邮编
+        /// </summary>
+        [StringLength(12)]
+        public string ZipCode { get; set; }
     }
 }
